@@ -1,0 +1,23 @@
+//Import the http module
+const http = require("http");
+const PORT = 3003;
+
+const url = require("url");
+
+const server = http.createServer((req, res) => {
+  const reqUrl = url.parse(req.url).pathname;
+  if (reqUrl == "/") {
+    res.write("Olet hakemistossa /");
+    res.end();
+  } else if (reqUrl == "/hello") {
+    res.write("olet hakemistossa /hello");
+    res.end();
+  } else {
+    res.write("Hakemaasi sivua ei löydy - 404 Not Found");
+    res.end();
+  }
+});
+
+server.listen(PORT, () => {
+  console.log(`server running at port ${PORT}`);
+});
